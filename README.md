@@ -123,4 +123,4 @@
 ```
 java.sql.SQLException: java.lang.ClassCastException: class java.math.BigInteger cannot be cast to class java.lang.Long (java.math.BigInteger and java.lang.Long are in module java.base of loader 'bootstrap')
 ```
-这类错误,则因为mysql版本高而mysql-connector-java版本过低问题，可以将lib里的mybatis-generator-core-1.3.2.jar包换为8.0以上版本，并在generatorSqlmapCustom.iml里相应修改配置，同时连接URL改为：jdbc:mysql://localhost:3306/hrms?serverTimezone=UTC，此时生成的实体类会出现WithBLOBs类，可以查看官方文档解决。
+这类错误,则因为mysql版本高而`mysql-connector-java`版本过低问题，可以将`lib`里的`mybatis-generator-core-1.3.2.jar`包换为8.0以上版本，并在`generatorSqlmapCustom.iml`里相应修改配置，同时连接URL改为：`jdbc:mysql://localhost:3306/hrms?serverTimezone=UTC`，此时生成的实体类会出现`WithBLOBs`类，可以查看官方文档解决。
