@@ -40,7 +40,7 @@
 			<!-- 从数据库返回的值被清理前后的空格 -->
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
-        <!-- targetProject:mapper映射文件生成的位置 -->
+        	<!-- targetProject:mapper映射文件生成的位置 -->
 		<sqlMapGenerator targetPackage="com.mybatis.mbg.mapper"
 			targetProject=".\src\main\java">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
@@ -62,7 +62,7 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false">
-        </table>-->
+        	</table>-->
 		<!-- 有些表的字段需要指定java类型
 		 <table schema="" tableName="">
 			<columnOverride column="" javaType="" />
@@ -118,4 +118,9 @@
 #对应自己的表信息（可copy多个）
 <table tableName="hrms_user" domainObjectName="HrmsUser"></table>
 ```
-
+#### 注意
+若出现
+```
+java.sql.SQLException: java.lang.ClassCastException: class java.math.BigInteger cannot be cast to class java.lang.Long (java.math.BigInteger and java.lang.Long are in module java.base of loader 'bootstrap')
+```
+这类错误,则因为mysql版本高而mysql-connector-java版本过低问题，可以将lib里的mybatis-generator-core-1.3.2.jar包换为8.0以上版本，并在generatorSqlmapCustom.iml里相应修改配置，同时连接URL改为：jdbc:mysql://localhost:3306/hrms?serverTimezone=UTC，此时生成的实体类会出现WithBLOBs类，可以查看官方文档解决。
